@@ -1,3 +1,4 @@
+import 'package:coding_chef_1/spiderman.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -6,124 +7,88 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SPIDER-MAN',
-      home: Grade(),
+      title: 'App Bar',
+      theme: ThemeData(primarySwatch: Colors.red),
+      home: MyPage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class Grade extends StatelessWidget {
+class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red[700],
       appBar: AppBar(
-        title: Text('SPIDER-MAN'),
-        backgroundColor: Colors.blue[900],
+        title: Text('App Bar Icon Menu'),
         centerTitle: true,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () {
+              print('shopping cart button clicked');
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              print('search button clicked');
+            },
+          )
+        ],
       ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/spiderman.gif'),
-                radius: 60,
+            UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/1.jpg'),
               ),
-            ),
-            Divider(
-              height: 60,
-              color: Colors.grey[850],
-              thickness: 0.5,
-            ),
-            Text(
-              'NAME',
-              style: TextStyle(
-                color: Colors.white,
-                letterSpacing: 2,
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'SPIDER-MAN',
-              style: TextStyle(
-                  color: Colors.white,
-                  letterSpacing: 2,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-              'SPIDER-MAN POWER LEVEL',
-              style: TextStyle(
-                color: Colors.white,
-                letterSpacing: 2,
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              '14',
-              style: TextStyle(
-                  color: Colors.white,
-                  letterSpacing: 2,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                Icon(Icons.check_circle_outline),
-                SizedBox(
-                  width: 10,
+              accountName: Text('Moseori'),
+              accountEmail: Text('account@example.com'),
+              onDetailsPressed: () => {print('arrow clicked')},
+              decoration: BoxDecoration(
+                color: Colors.red[200],
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(40),
+                  bottomRight: Radius.circular(40),
                 ),
-                Text(
-                  'using lightsaber',
-                  style: TextStyle(fontSize: 16, letterSpacing: 1),
+              ),
+              otherAccountsPictures: [
+                CircleAvatar(
+                  backgroundImage: AssetImage('assets/2.jpg'),
                 )
               ],
             ),
-            Row(
-              children: [
-                Icon(Icons.check_circle_outline),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'face hero tatto',
-                  style: TextStyle(fontSize: 16, letterSpacing: 1),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Icon(Icons.check_circle_outline),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'fire flames',
-                  style: TextStyle(fontSize: 16, letterSpacing: 1),
-                )
-              ],
-            ),
-            Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/spiderman.webp'),
-                radius: 40,
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.grey[850],
               ),
-            )
+              title: Text('Home'),
+              onTap: () => print('Home clicked'),
+              trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: Colors.grey[850],
+              ),
+              title: Text('Setting'),
+              onTap: () => print('Setting clicked'),
+              trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.question_answer,
+                color: Colors.grey[850],
+              ),
+              title: Text('QnA'),
+              onTap: () => print('QnA clicked'),
+              trailing: Icon(Icons.add),
+            ),
           ],
         ),
       ),
