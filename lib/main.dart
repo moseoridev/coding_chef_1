@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         '/b': (context) => ScreenB(),
         '/c': (context) => ScreenC()
       },
+      darkTheme: ThemeData.dark(),
     );
   }
 }
