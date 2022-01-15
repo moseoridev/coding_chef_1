@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 class MyButtons extends StatelessWidget {
   const MyButtons({Key? key}) : super(key: key);
+  void _show_snackbar(ctx, msg) {
+    ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(content: Text(msg)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +17,16 @@ class MyButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(
-              onPressed: () => ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text('text button'))),
+              onPressed: () => _show_snackbar(context, 'pressed!'),
               child: Text(
                 'Text Button',
                 style: TextStyle(fontSize: 20),
               ),
-              style: TextButton.styleFrom(primary: Colors.red),
+              onLongPress: () => _show_snackbar(context, 'long pressed!'),
+              style: TextButton.styleFrom(
+                primary: Colors.red,
+                // backgroundColor: Colors.blue,
+              ),
             )
           ],
         ),
